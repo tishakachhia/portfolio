@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full Stack Developer Portfolio</title>
+
+<style>
+/* ------------------------------------
+  TECH FUTURISTIC THEME VARIABLES
+------------------------------------ */
+:root {
+  --bg: #0e0e17;
+  --text: #ffffff;
+  --card: #15151f;
+  --accent: #00eaff;
+  --accent2: #7b2ff7;
+  --shadow: 0 0 15px rgba(0, 234, 255, 0.4);
+}
+
+body.light {
+  --bg: #f2f2f7;
+  --text: #000;
+  --card: #ffffff;
+  --accent: #0066ff;
+  --accent2: #8a2be2;
+  --shadow: 0 0 10px rgba(0, 102, 255, 0.3);
+}
+
+/* ------------------------------------
+  GLOBAL STYLES
+------------------------------------ */
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Poppins", sans-serif;
+  transition: background 0.4s, color 0.4s;
+}
+
+section {
+  padding: 70px 10%;
+}
+
+h2.section-title {
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 40px;
+  color: var(--accent);
+  text-shadow: var(--shadow);
+}
+
+/* ------------------------------------
+  NAVBAR
+------------------------------------ */
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 10%;
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 1000;
+}
+
+nav a {
+  color: var(--text);
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 18px;
+}
+
+.toggle-btn {
+  background: var(--accent);
+  color: #000;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* ------------------------------------
+  HERO SECTION
+------------------------------------ */
+.hero {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  animation: fadeIn 2s;
+}
+
+.hero h1 {
+  font-size: 55px;
+}
+
+.hero h1 span {
+  color: var(--accent);
+}
+
+.hero p {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.hero .btn {
+  margin-top: 25px;
+  padding: 12px 25px;
+  background: var(--accent2);
+  border-radius: 8px;
+  color: white;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.hero .btn:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow);
+}
+
+/* ------------------------------------
+  ABOUT
+------------------------------------ */
+.about-box {
+  background: var(--card);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  line-height: 1.6;
+}
+
+/* ------------------------------------
+  SKILLS WITH ANIMATED CHARTS
+------------------------------------ */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.skill-card {
+  background: var(--card);
+  padding: 25px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.skill-chart {
+  width: 120px;
+  height: 120px;
+  margin: auto;
+  position: relative;
+}
+
+.skill-chart canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.skill-name {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+/* ------------------------------------
+  PROJECTS
+------------------------------------ */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.project-card {
+  background: var(--card);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: 0.3s;
+  position: relative;
+}
+
+.project-card:hover {
+  transform: scale(1.05);
+}
+
+.project-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.project-info {
+  padding: 20px;
+}
+
+.tech-stack {
+  font-size: 14px;
+  color: var(--accent);
+}
+
+.project-links a {
+  color: var(--accent2);
+  margin-right: 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* ------------------------------------
+  EXPERIENCE
+------------------------------------ */
+.timeline {
+  border-left: 3px solid var(--accent);
+  padding-left: 20px;
+}
+
+.experience-item {
+  margin-bottom: 30px;
+}
+
+.experience-item h3 {
+  color: var(--accent2);
+}
+
+/* ------------------------------------
+  CONTACT
+------------------------------------ */
+.contact-box {
+  text-align: center;
+  background: var(--card);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.contact-box p {
+  font-size: 18px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* RESPONSIVE */
+@media(max-width: 768px) {
+  nav {
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo" style="color: var(--accent); font-size: 28px; font-weight: bold;">Portfolio</div>
+  <div>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#exp">Experience</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button class="toggle-btn" onclick="toggleMode()">Light/Dark</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Hello, I'm <span>Your Name</span></h1>
+  <p>Full Stack Developer • JavaScript • Node.js • React • MongoDB</p>
+  <a href="#projects" class="btn">View Projects</a>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <h2 class="section-title">About Me</h2>
+  <div class="about-box">
+    I am a Full Stack Developer specialising in modern JavaScript technologies.  
+    I build fast, interactive, and scalable applications with focus on UI/UX, performance and clean code.
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <h2 class="section-title">Skills</h2>
+
+  <div class="skills-grid">
+
+    <div class="skill-card">
+      <div class="skill-chart"><canvas data-skill="90"></canvas></div>
+      <p class="skill-name">Frontend Development</p>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-chart"><canvas data-skill="85"></canvas></div>
+      <p class="skill-name">Backend (Node.js)</p>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-chart"><canvas data-skill="80"></canvas></div>
+      <p class="skill-name">Database (MongoDB)</p>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-chart"><canvas data-skill="75"></canvas></div>
+      <p class="skill-name">DevOps / Cloud</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <h2 class="section-title">Projects</h2>
+
+  <div class="projects">
+
+    <div class="project-card">
+      <img src="https://via.placeholder.com/500x300" alt="Project 1">
+      <div class="project-info">
+        <h3>Project One</h3>
+        <p class="tech-stack">React • Node.js • MongoDB</p>
+        <div class="project-links">
+          <a href="#">Live</a>
+          <a href="#">GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="https://via.placeholder.com/500x300" alt="Project 2">
+      <div class="project-info">
+        <h3>Project Two</h3>
+        <p class="tech-stack">Vue • Firebase</p>
+        <div class="project-links">
+          <a href="#">Live</a>
+          <a href="#">GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="https://via.placeholder.com/500x300" alt="Project 3">
+      <div class="project-info">
+        <h3>Project Three</h3>
+        <p class="tech-stack">Node.js • Express • PostgreSQL</p>
+        <div class="project-links">
+          <a href="#">Live</a>
+          <a href="#">GitHub</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="exp">
+  <h2 class="section-title">Experience</h2>
+
+  <div class="timeline">
+
+    <div class="experience-item">
+      <h3>Full Stack Developer – XYZ Company</h3>
+      <p>2022 – Present</p>
+      <p>Developed scalable full-stack applications with React, Node.js and cloud infrastructure.</p>
+    </div>
+
+    <div class="experience-item">
+      <h3>Frontend Developer – ABC Tech</h3>
+      <p>2020 – 2022</p>
+      <p>Worked on UI/UX, animations, responsive design and SPA development.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2 class="section-title">Contact</h2>
+  <div class="contact-box">
+    <p>Email: yourname@gmail.com</p>
+    <p>Phone: +91 00000 00000</p>
+  </div>
+</section>
+
+<!-- JAVASCRIPT -->
+<script>
+/* DARK/LIGHT MODE */
+function toggleMode() {
+  document.body.classList.toggle('light');
+}
+
+/* ANIMATED SKILL CHARTS */
+document.querySelectorAll("canvas").forEach(canvas => {
+  let skill = canvas.dataset.skill;
+  let ctx = canvas.getContext("2d");
+  let start = 0;
+
+  function animate() {
+    let end = (start / 100) * 2 * Math.PI;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.lineWidth = 10;
+
+    // Background circle
+    ctx.beginPath();
+    ctx.strokeStyle = "#333";
+    ctx.arc(60, 60, 50, 0, 2 * Math.PI);
+    ctx.stroke();
+
+    // Progress circle
+    ctx.beginPath();
+    ctx.strokeStyle = getComputedStyle(document.body).getPropertyValue('--accent');
+    ctx.arc(60, 60, 50, -Math.PI / 2, end - Math.PI / 2);
+    ctx.stroke();
+
+    if (start < skill) {
+      start++;
+      requestAnimationFrame(animate);
+    }
+  }
+
+  animate();
+});
+</script>
+
+</body>
+</html>
